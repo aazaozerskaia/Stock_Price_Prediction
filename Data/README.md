@@ -1,1 +1,1 @@
-
+The dataset was divided into 2 parts due to the large volume. The first part contains all data before 2017 and the second part contains data since 2017. Files were stored as pickle and archieved as gzip.
