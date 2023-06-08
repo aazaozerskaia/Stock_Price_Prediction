@@ -1,2 +1,6 @@
-# Stock_Price_Prediction
-Master's project
+# Midterm price prediction for S&P 500 stocks
+### Master's project
+
+## Results
+
+## Future work
