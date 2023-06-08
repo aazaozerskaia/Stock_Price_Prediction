@@ -1,6 +1,6 @@
-# Midterm price prediction for S&P 500 stocks
+## Midterm price prediction for S&P 500 stocks
 ### Master's project
 
-## Results
+### Results
 
-## Future work
+### Future work
