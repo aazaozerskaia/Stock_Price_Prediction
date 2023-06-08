@@ -3,6 +3,7 @@ from tqdm import tqdm
 import bs4 as bs
 import requests
 import yfinance as yf
+from time import sleep
 
 
 class data_collection:
@@ -14,7 +15,7 @@ class data_collection:
         self.end_date = end_date
         
     def parse_tickers(self):
-        '''Collect dictionary of tickers' info based in SP_500'''
+        """Collect dictionary of tickers' info based in SP_500"""
         html = requests.get(self.url)
         soup = bs.BeautifulSoup(html.content, 'html.parser')
         table = soup.find('table', {'class': 'wikitable sortable'})
@@ -26,19 +27,20 @@ class data_collection:
         return symb_data
     
     def collect_yf_data(self, tickers):
-        '''Collect data using Yfinance API'''
+        """Collect data using Yfinance API"""
         df_list = []
         df = yf.download(tickers[-1], start=self.start_date, end=self.end_date)
         df['symbol'] = [tickers[-1]] * len(df)
         for i in tqdm(range(len(tickers)-1)):    
             a = yf.download(tickers[i], start=self.start_date, end=self.end_date, progress=False)
             a['symbol'] = [tickers[i]] * len(a)
-            df = pd.concat([df, a])  
+            df = pd.concat([df, a])
+            sleep(0.5)
         yf_data = df.reset_index()
         return yf_data
     
     def get_all_data(self):
-        '''Merging all data'''
+        """Merging all data"""
         symb_data = self.parse_tickers()
         yf_data = self.collect_yf_data(self.tickers)
         cols = ['symbol', 'gics sector', 'gics sub-industry']
