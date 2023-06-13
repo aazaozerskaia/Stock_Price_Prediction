@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 matplotlib.use('agg')
 
 
-token = "6036876719:AAE5-PzK2SYE8okfvayyXoyQjuZQAoLrazI"
+token = ""
 bot = telebot.TeleBot(token)
 
 symbols = []
